@@ -1,20 +1,21 @@
+
 class Conta:
 
     def __init__(self, numero, titular, saldo, limite):
         print("Criando a conta {}".format(self))
-        self.numero = numero
-        self.titular = titular
-        self.saldo = saldo
-        self.limite = limite
+        self.__numero = numero
+        self.__titular = titular
+        self.__saldo = saldo
+        self.__limite = limite
 
     def extrato(self):
-        print("Saldo de {} do titular {}".format(self.saldo, self.titular))
+        print("Saldo de {} do titular {}".format(self.__saldo, self.__titular))
 
     def saca(self, valor):
-        if valor < self.limite:
-            self.saldo -= valor
-        elif valor > self.limite:
+        if valor < self.__limite:
+            self.__saldo -= valor
+        elif valor > self.__limite:
             print("Estourou o limite")
 
     def deposita(self, valor):
-        self.saldo += valor
+        self.__saldo += valor
