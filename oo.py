@@ -1,45 +1,47 @@
+class Funcionario:
+    def __init__(self, nome):
+        self.nome = nome
 
-class Conta:
+    def registra_horas(self, horas):
+        print('Horas registradas.')
 
-    def __init__(self, numero, titular, saldo, limite):
-        print("Criando a conta {}".format(self))
-        self.__numero = numero
-        self.__titular = titular
-        self.__saldo = saldo
-        self.__limite = limite
+    def mostrar_tarefas(self):
+        print('Fez muita coisa...')
 
-    def extrato(self):
-        print("Saldo de {} do titular {}".format(self.__saldo, self.__titular))
+class Caelum(Funcionario):
+    def mostrar_tarefas(self):
+        print('Fez muita coisa, Caelumer')
 
-    def __pode_sacar(self, valor):
-        valor_diponivel_para_saque = self.__saldo + self.__limite
-        return valor <= valor_diponivel_para_saque
+    def busca_cursos_do_mes(self, mes=None):
+        print(f'Mostrando cursos - {mes}' if mes else 'Mostrando cursos desse mês')
 
-    def saca(self, valor):
-        if(self.__pode_sacar(valor)):
-            self.__saldo -= valor
-        else:
-            print("Estourou o limite")
+class Alura(Funcionario):
+    def mostrar_tarefas(self):
+        print('Fez muita coisa, Alurete!')
 
-    def deposita(self, valor):
-        self.__saldo += valor
+    def busca_perguntas_sem_resposta(self):
+        print('Mostrando perguntas não respondidas do fórum')
 
-    def transfere(self, valor, destino):
-        self.saca(valor)
-        destino.deposita(valor)
 
-    @property
-    def saldo(self):
-        return self.__saldo
+class Hipster:
+    def __str__(self):
+        return f'Hipster,  {self.nome}'
 
-    @property
-    def titular(self):
-        return self.__titular
 
-    @property
-    def limite(self):
-        return self.__limite
+class Junior(Alura):
+    pass
 
-    @limite.setter
-    def limite(self, limite):
-        self.__limite = limite
+
+class Pleno(Alura, Caelum, Hipster):
+    pass
+
+jose = Junior('José')
+jose.busca_perguntas_sem_resposta()
+
+luan = Pleno('Luan')
+luan.busca_perguntas_sem_resposta()
+luan.busca_cursos_do_mes()
+
+luan.mostrar_tarefas()
+
+print(luan)
